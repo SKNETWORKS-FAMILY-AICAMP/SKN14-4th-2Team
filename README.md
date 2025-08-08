@@ -15,22 +15,22 @@ LLM의 널리지 컷오프 특성상 최신정보를 알기어렵기때문에 �
 <table width="100%">
   <tr>
     <td align="center">
-      <img src="image/gyg.png" width="150" alt="강윤구 사진"/>
+      <img src="04_test_plan_results/images/gyg.png" width="150" alt="강윤구 사진"/>
     </td>
     <td align="center">
-      <img src="image/kur.png" width="150" alt="김의령 사진"/>
+      <img src="04_test_plan_results/images/kur.png" width="150" alt="김의령 사진"/>
     </td>
     <td align="center">
-      <img src="image/kkr.png" width="150" alt="김광령 사진"/>
+      <img src="04_test_plan_results/images/kkr.png" width="150" alt="김광령 사진"/>
     </td>
     <td align="center">
-      <img src="image/wjh.jpeg" width="150" alt="이원지희 사진"/>
+      <img src="04_test_plan_results/images/wjh.jpeg" width="150" alt="이원지희 사진"/>
     </td>
     <td align="center">
-      <img src="image/jmy.png" width="150" alt="정민영 사진"/>
+      <img src="04_test_plan_results/images/jmy.png" width="150" alt="정민영 사진"/>
     </td>
     <td align="center">
-      <img src="image/jjg.jpg" width="150" alt="정전규 사진"/>
+      <img src="04_test_plan_results/images/jjg.jpg" width="150" alt="정전규 사진"/>
     </td>
   </tr>
   <tr>
