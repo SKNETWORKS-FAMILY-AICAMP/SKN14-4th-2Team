@@ -357,10 +357,6 @@ docker-compose up --build -d
 # 방화벽 확인 (80번 포트 열기)
 sudo ufw allow 80
 ```
-```
-
-
-<hr>
 
 ## 4️⃣ 시스템 아키텍처
 
