@@ -306,13 +306,6 @@ KAKAO_CLIENT_ID=your_kakao_client_id
 KAKAO_CLIENT_SECRET=your_kakao_client_secret
 NAVER_LOGIN_CLIENT_ID=your_naver_login_client_id
 NAVER_LOGIN_CLIENT_SECRET=your_naver_login_client_secret
-
-# 데이터베이스 설정
-DB_NAME=jembotdb
-DB_USER=jembot
-DB_PASSWORD=jembot
-DB_HOST=[MySQL_인스턴스_IP]  # 여기에 실제 MySQL IP 입력
-DB_PORT=3306
 ```
 
 ### 소셜 로그인 리다이렉트 URL 설정
