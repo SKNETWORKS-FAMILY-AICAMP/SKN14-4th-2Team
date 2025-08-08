@@ -5,14 +5,14 @@
 # root계정으로 실행
 
 # 모든 host에서 접근가능한 django계정 생성(비밀번호 django)
-create user 'jembot_ur'@'%' identified by 'jembot'; 
+create user 'jembot'@'%' identified by 'jembot'; 
 -- user : username, identified by : password
 
 # qnadb 생성
-create database jembotdatabase character set utf8mb4 collate utf8mb4_unicode_ci;
+create database jembotdb character set utf8mb4 collate utf8mb4_unicode_ci;
 
 # django사용자에게 qnadb 권한 부여
-grant all privileges on jembotdatabase.* to 'jembot'@'%';
+grant all privileges on jembotdb.* to 'jembot'@'%';
 flush privileges;
 
 
