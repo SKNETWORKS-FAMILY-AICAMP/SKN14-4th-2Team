@@ -15,22 +15,22 @@ LLM의 널리지 컷오프 특성상 최신정보를 알기어렵기때문에 �
 <table width="100%">
   <tr>
     <td align="center">
-      <img src="04_test_plan_results/images/gyg.png" width="150" alt="강윤구 사진"/>
+      <img src="images/gyg.png" width="150" alt="강윤구 사진"/>
     </td>
     <td align="center">
-      <img src="04_test_plan_results/images/kur.png" width="150" alt="김의령 사진"/>
+      <img src="images/kur.png" width="150" alt="김의령 사진"/>
     </td>
     <td align="center">
-      <img src="04_test_plan_results/images/kkr.png" width="150" alt="김광령 사진"/>
+      <img src="images/kkr.png" width="150" alt="김광령 사진"/>
     </td>
     <td align="center">
-      <img src="04_test_plan_results/images/wjh.jpeg" width="150" alt="이원지희 사진"/>
+      <img src="images/wjh.jpeg" width="150" alt="이원지희 사진"/>
     </td>
     <td align="center">
-      <img src="04_test_plan_results/images/jmy.png" width="150" alt="정민영 사진"/>
+      <img src="images/jmy.png" width="150" alt="정민영 사진"/>
     </td>
     <td align="center">
-      <img src="04_test_plan_results/images/jjg.jpg" width="150" alt="정전규 사진"/>
+      <img src="images/jjg.jpg" width="150" alt="정전규 사진"/>
     </td>
   </tr>
   <tr>
@@ -126,16 +126,15 @@ LLM의 널리지 컷오프 특성상 최신정보를 알기어렵기때문에 �
 | **LLM Model** | ![GPT-4o](https://img.shields.io/badge/GPT--4o-4B91FF?style=for-the-badge&logo=openai&logoColor=white) |
 | **Collaboration Tool** | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) |
 | **Vector DB** | ![FAISS](https://img.shields.io/badge/FAISS-4B8BEA?style=for-the-badge&logo=facebook&logoColor=white) |
-| **API 활용** | ![Open Dart API](https://img.shields.io/badge/Open%20DART%20API-002D61?style=for-the-badge&logoColor=white) <br> ![Yahoo Finance](https://img.shields.io/badge/yfinance-144E8C?style=for-the-badge&logo=yahoo&logoColor=white) <br> ![PyKRX](https://img.shields.io/badge/pykrx-1F9F3F?style=for-the-badge&logoColor=white) <br> ![Naver News](https://img.shields.io/badge/Naver%20News%20Crawling-03C75A?style=for-the-badge&logo=naver&logoColor=white) ![Google API](https://img.shields.io/badge/Google%20Login%20API-4285F4?style=for-the-badge&logo=google&logoColor=white) <br> ![Naver API](https://img.shields.io/badge/Naver%20Login%20API-03C75A?style=for-the-badge&logo=naver&logoColor=white) <br> ![Kakao API](https://img.shields.io/badge/Kakao%20Login%20API-FFCD00?style=for-the-badge&logo=kakao&logoColor=black) <br>|
-
+| **Database** | ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) |
+| **API 활용** | ![Open Dart API](https://img.shields.io/badge/Open%20DART%20API-002D61?style=for-the-badge&logoColor=white) <br> ![Yahoo Finance](https://img.shields.io/badge/yfinance-144E8C?style=for-the-badge&logo=yahoo&logoColor=white) <br> ![PyKRX](https://img.shields.io/badge/pykrx-1F9F3F?style=for-the-badge&logoColor=white) <br> ![Naver News](https://img.shields.io/badge/Naver%20News%20Crawling-03C75A?style=for-the-badge&logo=naver&logoColor=white) ![Google API](https://img.shields.io/badge/Google%20Login%20API-4285F4?style=for-the-badge&logo=google&logoColor=white) <br> ![Naver API](https://img.shields.io/badge/Naver%20Login%20API-03C75A?style=for-the-badge&logo=naver&logoColor=white) <br> ![Kakao API](https://img.shields.io/badge/Kakao%20Login%20API-FFCD00?style=for-the-badge&logo=kakao&logoColor=black) <br> |
 
 <hr>
 
+## ⚙️ repository folder structure
 ```markdown
-jembot_all/
+jembot_all_docker/
 ├── _homework/
-│   ├── __pycache__/
-│   ├── __init__.py
 │   ├── asgi.py
 │   ├── settings.py
 │   ├── timeout_screenshot.png
@@ -143,7 +142,6 @@ jembot_all/
 │   ├── wsgi.py
 │
 ├── accounts/
-│   ├── __pycache__/
 │   ├── adapter.py
 │   ├── admin.py
 │   ├── apps.py
@@ -194,7 +192,8 @@ jembot_all/
 │
 ├── .env
 ├── .gitignore
-├── img.png
+├── docker-compose.yml
+├── Dockerfile
 ├── manage.py
 ├── requirements.txt
 ├── setup.sql
@@ -205,7 +204,7 @@ jembot_all/
 
 ## 4️⃣ 시스템 아키텍처
 
-<img src="image/archi.png" width="auto" alt="시각화 사진"/>
+<img src="images/img.png" width="auto" alt="시각화 사진"/>
 
  **1. 질문 입력**<br>
 **사용자는 챗봇을 통해 질문을 입력합니다.<br>**
@@ -268,9 +267,10 @@ get_financial_state() 함수는 기업 코드, 연도, 보고서 코드, 연결 
 #### 3. `graph_node.py`
 사용자의 질문을 분류(classify)하고 필요한 정보(회사, 연도 등)를 추출(extract_entities)합니다.
 
-질문 유형과 난이도에 따라 적절한 체인(accounting, financial, business, hybrid 등)을 선택하여 문서 검색 및 답변을 생성합니다.
+질문 유형과 난이도에 따라 적절한 체인(accounting, financial, business, hybrid 등)을 선택하여 문서 검색 및 답변을 생성합니다. 
 
 대화 기록(chat_history)을 유지하며 각 단계에서 사용자와 assistant의 역할에 따라 상태를 업데이트합니다.
+
 ---
 
 #### 4. `normalize_code_search.py`
@@ -279,6 +279,7 @@ normalize_company_name()은 입력된 기업명을 정규화하여 corp_list에�
 parse_extracted_text()는 텍스트에서 회사명과 연도 정보를 추출하여 딕셔너리 형태로 반환합니다.
 
 find_corporation_code()는 정규화된 기업명을 기반으로 corp_list.json에서 해당 기업의 고유 코드를 찾아 반환합니다.
+
 ---
 
 #### 5. `retriever_setting.py`
@@ -287,24 +288,29 @@ HuggingFace의 BAAI/bge-m3 임베딩 모델을 사용하여 로컬에 저장된 
 각각의 인덱스에서 top-6 유사 문서를 검색할 수 있는 accounting_retriever와 business_retriever를 생성합니다.
 
 SelfQueryRetriever 시도 코드는 주석 처리되어 있으며, 현재는 일반 retriever만 반환합니다
+
 ---
 
 #### 6. `stock_price_tool.py`
 yfinance 라이브러리를 사용하여 get_stock_price 함수를 만듭니다. 이 함수는 주식 티커(예: '005930.KS')를 입력받아 현재가, 등락률, 거래량 등 실시간 시세 정보를 조회하여 반환합니다. @tool 데코레이터로 감싸 LangGraph가 호출할 수 있는 명확한 기능 단위로 정의하는 것이 핵심입니다.
+
 ---
 
 #### 7. `stock_news_retriever.py`
 네이버 뉴스 검색 API나 웹 크롤링을 통해 특정 기업 관련 최신 뉴스 기사들을 수집하는 search_news 함수를 구현합니다. 수집된 뉴스 텍스트들을 임베딩 모델(예: bge-m3)로 벡터화하고 FAISS 같은 벡터 DB에 저장하여, 사용자의 질문과 가장 관련 높은 뉴스 내용을 RAG(Retrieval-Augmented Generation) 방식으로 찾아내는 검색기(Retriever) 역할을 수행합니다.
+
 ---
 
 #### 8. `agent_state.py` 
 TypedDict를 사용하여 에이전트의 작업 내용을 기록할 '상태'의 형식을 정의합니다. 사용자의 원본 질문(question)과 함께, 위 stock_price_tool의 결과가 담길 stock_price 필드, stock_news_retriever가 찾아온 뉴스가 담길 related_news 필드 등을 명시합니다. 이 상태는 모든 노드에 전달되는 중앙 데이터 버스입니다.
+
 ---
 
 #### 9. `graph_router.py` 
 에이전트의 '상태'를 보고 다음 행동을 결정하는 '라우터(Router)' 함수를 작성합니다. 예를 들어, 상태에 related_news는 있지만 stock_price 정보가 없다면 '시세 조회 도구' 노드를 호출하라고 지시합니다. 모든 정보가 준비되면 '최종 답변 생성' 노드로 보내는 등, **조건부 엣지(conditional edge)**의 핵심 두뇌 역할을 담당합니다.
 
-### 흐름
+# ♒ 흐름
+
 ## 1. 사용자 인증 흐름 (일반 로그인 및 소셜 로그인)
 
 ### 🔐 소셜 로그인 흐름:
@@ -405,29 +411,31 @@ OpenAI GPT-4o (분석 리포트 생성)
 ## 6️⃣ Django WEBAPP 구현
 
 **화면설계 와이어 프레임**
-  <img src="image/wire.png" width="auto" alt="화면1"/>
+  <img src="images/wire.png" width="auto" alt="화면1"/>
 
 
 - **결과**<br>
-  <img src="image/결과1.png" width="auto" alt="결과1"/><br>
-  <img src="image/결과2.png" width="auto" alt="결과2"/><br>
-  <img src="image/결과3.png" width="auto" alt="결과3"/><br>
+  <img src="images/결과1.png" width="auto" alt="결과1"/><br>
+  <img src="images/결과2.png" width="auto" alt="결과2"/><br>
+  <img src="images/결과3.png" width="auto" alt="결과3"/><br>
 
 
 ### 추가 구현 사항
 #### 1. 채팅창 옆에 뉴스와 주식을 볼 수 있는 칸을 구현하여 기업에 관한 정보를 쉽게 얻을 수 있도록 구현
-<img src="image/chat_page.png" width="auto" alt="결과1"/><br>
-<img src="image/news.png" width="auto" alt="결과1"/><br>
+<img src="images/chat_page.png" width="auto" alt="결과1"/><br>
+<img src="images/news.png" width="auto" alt="결과1"/><br>
 - 밑의 입력창에 기업명을 적으면 그 기업과 관련된 기사들이 뜨는 식으로 구현했습니다.
 - 주식 칸에서 기업명을 검색하면 그 기업의 주가 정보가 나오도록 구현했습니다.
 
 #### 2. 관심기업 및 종합보고서 기능 그리고 주식조회와 왼쪽의 댓글코멘트와 좋아요의 기능을 추가
-<img src="image/stock.png" width="auto" alt="결과3"/><br>
+<img src="images/stock.png" width="auto" alt="결과3"/><br>
 - 해당 주식에 대한 여러 사람들의 생각을 볼 수 있게 댓글창을 구현하였으며 거기다 댓글에 좋아요를 눌러 서로 교류할 수 있도록 하였습니다.
 
-#### 3. 마이페이지와 회원가입 기능 추가
-<img src="image/mypage.png" width="auto" alt="마이페이지"/><br> 
-<img src="image/login.png" width="auto" alt="로그인"/><br> 
+#### 3. 회원가입, 로그인, 마이페이지 기능 추가
+<img src="images/login.png" width="auto" alt="로그인"/><br>
+<img src="images/signup.png" width="auto" alt="회원가입"/><br>
+<img src="images/mypage.png" width="auto" alt="마이페이지"/><br> 
+<img src="images/mypage_edit.png" width="auto" alt="마이페이지 수정"/><br>
 - 로그인 및 로그인한 회원의 정보와 그 정보를 수정할 수 있는 기능을 추가하였습니다.
 
 <hr>
