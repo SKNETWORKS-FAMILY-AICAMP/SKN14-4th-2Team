@@ -342,7 +342,7 @@ DATABASES = {
 - `app/utils2/faiss_index_bge_m3/` 폴더 다운로드 후 배치
 - `app/utils2/faiss_index3/` 폴더 다운로드 후 배치
 
-## 4. 실행 (빌드 + 실행 한 번에) ---> jembot_all_docker 폴더에서 실행 필요요
+## 4. 실행 (빌드 + 실행 한 번에) ---> jembot_all_docker 폴더에서 실행 필요
 ```bash
 docker-compose up --build -d
 ```
