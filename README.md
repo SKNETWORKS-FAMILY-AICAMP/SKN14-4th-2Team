@@ -550,7 +550,7 @@ yfinance / pykrx (주식 데이터 조회)
     ↓
 Django 서버
     ↓
-네이버 뉴스 Open API (또는 크롤링)
+네이버 뉴스 Open API
     ↓
 Beautiful Soup (HTML 파싱/데이터 정제)
     ↓
@@ -563,7 +563,7 @@ Beautiful Soup (HTML 파싱/데이터 정제)
     ↓
 Django 서버
     ↓
-LangGraph 워크플로우 실행
+Langchain 워크플로우 실행
     ↓
 FAISS 벡터 DB (사업보고서) + DART API (재무제표)
     ↓
