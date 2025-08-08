@@ -580,7 +580,6 @@ OpenAI GPT-4o (분석 리포트 생성)
 #### 1. 채팅창 옆에 뉴스와 주식을 볼 수 있는 칸을 구현하여 기업에 관한 정보를 쉽게 얻을 수 있도록 구현
 <img src="images/chat_page.png" width="auto" alt="결과1"/><br>
 <img src="images/chat_page2.png" width="auto" alt="결과1-1"/><br>
-<img src="images/news.png" width="auto" alt="결과1"/><br>
 - 밑의 입력창에 기업명을 적으면 그 기업과 관련된 기사들이 뜨는 식으로 구현했습니다.
 - 주식 칸에서 기업명을 검색하면 그 기업의 주가 정보가 나오도록 구현했습니다.
 
