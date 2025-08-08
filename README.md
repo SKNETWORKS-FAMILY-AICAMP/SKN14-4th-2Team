@@ -569,14 +569,7 @@ OpenAI GPT-4o (분석 리포트 생성)
 **화면설계 와이어 프레임**
   <img src="images/wire.png" width="auto" alt="화면1"/>
 
-
-- **결과**<br>
-  <img src="images/결과1.png" width="auto" alt="결과1"/><br>
-  <img src="images/결과2.png" width="auto" alt="결과2"/><br>
-  <img src="images/결과3.png" width="auto" alt="결과3"/><br>
-
-
-### 추가 구현 사항
+### 구현 사항
 #### 1. 채팅창 옆에 뉴스와 주식을 볼 수 있는 칸을 구현하여 기업에 관한 정보를 쉽게 얻을 수 있도록 구현
 <img src="images/chat_page.png" width="auto" alt="결과1"/><br>
 <img src="images/chat_page2.png" width="auto" alt="결과1-1"/><br>
