@@ -260,7 +260,7 @@ jembot_all_docker/
 
 ## 1. 사전 준비
 - 클라우드 인스턴스에 Docker 설치
-- MySQL 인스턴스 준비 (IP 주소 확인)
+- MySQL 인스턴스 or 도커 컨테이너 준비 (IP 주소 확인)
 
 ## 2. Docker 설치 (인스턴스에서)
 ```bash
