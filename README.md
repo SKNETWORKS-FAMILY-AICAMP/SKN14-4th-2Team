@@ -281,9 +281,11 @@ sudo usermod -aG docker $USER
 ## 3. 설정 파일 준비
 
 ### 깃허브 클론 (jembot_all_docker 폴더 사용)
-```git clone https://github.com/SKNETWORKS-FAMILY-AICAMP/SKN14-4th-2Team```
+```bash
+git clone https://github.com/SKNETWORKS-FAMILY-AICAMP/SKN14-4th-2Team
+```
 
-### .env 파일 생성
+### .env 파일 생성 (jembot_all_docker 폴더 내에서)
 ```env
 # LangSmith 설정
 LANGSMITH_API_KEY=your_langsmith_api_key
@@ -319,7 +321,7 @@ DB_PORT=3306
 - **Naver**: `http://[인스턴스_퍼블릭_IP]:80/accounts/naver/login/callback/`
 - **Kakao**: `http://[인스턴스_퍼블릭_IP]:80/accounts/kakao/login/callback/`
 
-### settings.py 수정
+### jembot_all_docker/_homeowork/settings.py 수정
 ```python
 DATABASES = {
     'default': {
@@ -340,7 +342,7 @@ DATABASES = {
 - `app/utils2/faiss_index_bge_m3/` 폴더 다운로드 후 배치
 - `app/utils2/faiss_index3/` 폴더 다운로드 후 배치
 
-## 4. 실행 (빌드 + 실행 한 번에)
+## 4. 실행 (빌드 + 실행 한 번에) ---> jembot_all_docker 폴더에서 실행 필요요
 ```bash
 docker-compose up --build -d
 ```
