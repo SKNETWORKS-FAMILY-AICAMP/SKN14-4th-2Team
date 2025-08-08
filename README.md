@@ -280,6 +280,9 @@ sudo usermod -aG docker $USER
 
 ## 3. 설정 파일 준비
 
+### 깃허브 클론 (jembot_all_docker 폴더 사용)
+```git clone https://github.com/SKNETWORKS-FAMILY-AICAMP/SKN14-4th-2Team```
+
 ### .env 파일 생성
 ```env
 # LangSmith 설정
