@@ -61,7 +61,7 @@ LLM의 널리지 컷오프 특성상 최신정보를 알기어렵기때문에 �
 | 프로젝트 주제 선정   | 전체 팀원     |              |
 | 로그인 기능 | 강윤구 , 김광령     |   RDB       |
 | 랭그래프 개발        | 정민영       | 파이썬 파일,벡터DB     |
-| Django 개발 | 정민영, 김의령  | html,css 파일 |
+| Django 개발 | 정민영, 김의령  | django project |
 | AWS DOCKER 배포  | 정민영       |  Dockerfile, Docker-compose.yml     |
 | README 작성    | 전정규      | README.md 파일 |
 | ppt 제작       | 강윤구, 이원지희 | PPT          |
