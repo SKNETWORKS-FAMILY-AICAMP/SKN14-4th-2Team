@@ -134,72 +134,232 @@ LLM의 널리지 컷오프 특성상 최신정보를 알기어렵기때문에 �
 ## ⚙️ repository folder structure
 ```markdown
 jembot_all_docker/
-├── _homework/
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── timeout_screenshot.png
-│   ├── urls.py
-│   ├── wsgi.py
+├── _homework/                          # Django 프로젝트 설정 디렉토리
+│   ├── asgi.py                         # ASGI 애플리케이션 설정 (비동기 웹 서버)
+│   ├── settings.py                     # Django 프로젝트 메인 설정 파일
+│   ├── timeout_screenshot.png          # 타임아웃 관련 스크린샷 (문서)
+│   ├── urls.py                         # 프로젝트 메인 URL 라우팅 설정
+│   ├── wsgi.py                         # WSGI 애플리케이션 설정 (동기 웹 서버)
 │
-├── accounts/
-│   ├── adapter.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── forms.py
-│   ├── urls.py
-│   ├── views.py
+├── accounts/                           # 사용자 계정 관리 앱
+│   ├── adapter.py                      # 소셜 로그인 어댑터 (프로필 이미지 저장 로직)
+│   ├── admin.py                        # Django 관리자 페이지 설정
+│   ├── apps.py                         # 앱 설정 파일
+│   ├── forms.py                        # 사용자 폼 정의 (회원가입, 로그인 등)
+│   ├── urls.py                         # 계정 관련 URL 라우팅
+│   ├── views.py                        # 계정 관련 뷰 함수들
 │
-├── app/
-├── images/
-├── media/
-│   └── profile_pics/
-├── static/
-│   ├── css/
-│   │   ├── app/
-│   │   │   ├── main.css
-│   │   │   └── stock.css
-│   │   ├── layout/
-│   │   ├── home.css
-│   │   └── profile.css
-│   ├── images/
-│   │   ├── google_icon.svg
-│   │   ├── kakao_icon.png
-│   │   ├── naver_icon.png
-│   │   └── robot-icon.png
-│   └── js/
-│       └── app/
-│           ├── main_chat.js
-│           ├── main.js
-│           └── stock.js
+├── app/                                # 메인 애플리케이션 앱
+│   ├── __init__.py                     # Python 패키지 초기화
+│   ├── admin.py                        # Django 관리자 페이지 설정
+│   ├── apps.py                         # 앱 설정 파일
+│   ├── auth_views.py                   # 인증 관련 뷰 (구글 OAuth 등)
+│   ├── migrations/                     # 데이터베이스 마이그레이션 파일들
+│   │   ├── __init__.py
+│   │   ├── 0001_initial.py            # 초기 마이그레이션
+│   │   └── 0002_remove_customuser_google_id_alter_customuser_name_and_more.py
+│   ├── models.py                       # 데이터베이스 모델 정의 (CustomUser 등)
+│   ├── tests.py                        # 테스트 파일
+│   ├── urls.py                         # 메인 앱 URL 라우팅
+│   ├── utils2/                         # 유틸리티 함수들
+│   │   ├── __init__.py
+│   │   ├── api_get.py                  # API 호출 관련 함수
+│   │   ├── chain_setting.py            # LangChain 설정
+│   │   ├── corp_list.json              # 기업 목록 데이터
+│   │   ├── faiss_index_bge_m3/         # 사업보고서 FAISS 벡터 DB (BGE 모델) --- 구글 드라이브 링크 제공
+│   │   ├── faiss_index3/               # 회계기준서 FAISS 벡터 DB (BGE 모델) --- 구글 드라이브 링크 제공
+│   │   ├── graph_node.py               # 그래프 노드 정의
+│   │   ├── graph_setting.py            # 그래프 설정
+│   │   ├── main.py                     # 메인 유틸리티 함수
+│   │   ├── normalize_code_search.py    # 코드 검색 정규화
+│   │   ├── retreiver_setting.py        # 검색기 설정
+│   │   ├── stock_chain.py              # 주식 관련 LangChain
+│   │   ├── stock_node.py               # 주식 노드 정의
+│   │   └── test.ipynb                  # 테스트 노트북
+│   └── views.py                        # 메인 뷰 함수들 (채팅, 주식 등)
 │
-├── templates/
-│   ├── account/
-│   │   ├── login.html
-│   │   ├── logout.html
-│   │   ├── profile_edit.html
-│   │   ├── profile.html
-│   │   └── signup.html
-│   ├── app/
-│   │   ├── login.html
-│   │   ├── main.html
-│   │   └── stock.html
-│   ├── layout/
-│   │   ├── base.html
-│   │   ├── footer.html
-│   │   └── header.html
-│   └── socialaccount/
-│   └── home.html
+├── images/                             # 이미지 파일들
+│   └── img.png                         # 일반 이미지
 │
-├── .env
-├── .gitignore
-├── docker-compose.yml
-├── Dockerfile
-├── manage.py
-├── requirements.txt
-├── setup.sql
-
-
+├── media/                              # 사용자 업로드 파일 저장소
+│   └── profile_pics/                   # 프로필 사진 저장 디렉토리
+│       ├── 471203945-6b40c57f-021e-4941-b01d-13a581173301.gif
+│       ├── Golden-Retriever_wtoN2sa.jpg
+│       ├── Golden-Retriever.jpg
+│       ├── image.png
+│       ├── kakao_icon_1ZlWi1d.png
+│       ├── kakao_icon_789lysH.png
+│       ├── kakao_icon_iglyz0I.png
+│       ├── kakao_icon_NGyG1Se.png
+│       ├── kakao_icon.png
+│       ├── naver_icon_kt8qWMc.png
+│       ├── naver_icon_l8rmE9E.png
+│       ├── naver_icon_pLdUwc0.png
+│       ├── naver_icon.png
+│       ├── rasdf.png
+│       ├── robot-icon_BaYzrWU.png
+│       └── robot-icon.png
+│
+├── static/                             # 정적 파일들 (CSS, JS, 이미지)
+│   ├── css/                            # CSS 스타일시트
+│   │   ├── app/                        # 앱별 CSS
+│   │   │   ├── main.css                # 메인 페이지 스타일
+│   │   │   └── stock.css               # 주식 페이지 스타일
+│   │   ├── layout/                     # 레이아웃 관련 CSS
+│   │   │   ├── base.css                # 기본 레이아웃 스타일
+│   │   │   ├── footer.css              # 푸터 스타일
+│   │   │   └── header.css              # 헤더 스타일
+│   │   ├── home.css                    # 홈페이지 스타일
+│   │   └── profile.css                 # 프로필 페이지 스타일
+│   ├── images/                         # 정적 이미지 파일들
+│   │   ├── google_icon.svg             # 구글 아이콘
+│   │   ├── kakao_icon.png              # 카카오 아이콘
+│   │   ├── naver_icon.png              # 네이버 아이콘
+│   │   └── robot-icon.png              # 로봇 아이콘 (기본 프로필)
+│   └── js/                             # JavaScript 파일들
+│       └── app/                        # 앱별 JavaScript
+│           ├── main_chat.js            # 메인 채팅 기능
+│           ├── main.js                 # 메인 페이지 기능
+│           └── stock.js                # 주식 페이지 기능
+│
+├── templates/                          # HTML 템플릿 파일들
+│   ├── account/                        # 계정 관련 템플릿
+│   │   ├── login.html                  # 로그인 페이지
+│   │   ├── logout.html                 # 로그아웃 페이지
+│   │   ├── profile_edit.html           # 프로필 수정 페이지
+│   │   ├── profile.html                # 프로필 페이지 (마이페이지)
+│   │   └── signup.html                 # 회원가입 페이지
+│   ├── app/                            # 메인 앱 템플릿
+│   │   ├── login.html                  # 앱 로그인 페이지
+│   │   ├── main.html                   # 메인 페이지 (채팅)
+│   │   └── stock.html                  # 주식 페이지
+│   ├── layout/                         # 레이아웃 템플릿
+│   │   ├── base.html                   # 기본 레이아웃 (헤더, 푸터 포함)
+│   │   ├── footer.html                 # 푸터 템플릿
+│   │   └── header.html                 # 헤더 템플릿
+│   ├── socialaccount/                  # 소셜 계정 관련 템플릿
+│   │   ├── signup.html                 # 소셜 회원가입 페이지
+│   │   └── snippets/                   # 소셜 로그인 스니펫
+│   │       └── provider_list.html      # 소셜 로그인 제공자 목록
+│   └── home.html                       # 홈페이지 템플릿
+│
+├── .env                                # 환경 변수 파일 (API 키, 데이터베이스 설정 등)
+├── .gitignore                          # Git 무시 파일 목록
+├── docker-compose.yml                  # Docker Compose 설정 (서비스 정의)
+├── Dockerfile                          # Docker 이미지 빌드 설정
+├── manage.py                           # Django 관리 명령어 스크립트
+├── requirements.txt                    # Python 패키지 의존성 목록
+└── setup.sql                           # 데이터베이스 초기 설정 SQL
 ```
+
+> 🔗 **FAISS 벡터 DB 다운로드 링크**
+> - [faiss_index3 (회계기준서 벡터 DB) / faiss_index_bge_m3 (사업보고서 벡터 DB)](https://drive.google.com/drive/folders/19y5kH1-mgCo3-0_Rbuxq3gCFL7zoI9ar?usp=sharing)
+
+
+# ⚙️ JemBot 실행 방법 (클라우드 인스턴스 + Docker)
+
+## 1. 사전 준비
+- 클라우드 인스턴스에 Docker 설치
+- MySQL 인스턴스 준비 (IP 주소 확인)
+
+## 2. Docker 설치 (인스턴스에서)
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install docker.io docker-compose
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+
+# CentOS/RHEL
+sudo yum install docker docker-compose
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+```
+
+## 3. 설정 파일 준비
+
+### .env 파일 생성
+```env
+# LangSmith 설정
+LANGSMITH_API_KEY=your_langsmith_api_key
+LANGSMITH_ENDPOINT=https://api.smith.langchain.com/
+skn14_langchain=skn14_langchain
+LANGSMITH_TRACING=true
+
+# API 키들
+DART_API_KEY=your_dart_api_key
+OPENAI_API_KEY=your_openai_api_key
+NAVER_CLIENT_ID=your_naver_client_id
+NAVER_CLIENT_SECRET=your_naver_client_secret
+
+# 소셜 로그인 API 키
+GOOGLE_OAUTH2_CLIENT_ID=your_google_oauth2_client_id
+GOOGLE_OAUTH2_CLIENT_SECRET=your_google_oauth2_client_secret
+KAKAO_CLIENT_ID=your_kakao_client_id
+KAKAO_CLIENT_SECRET=your_kakao_client_secret
+NAVER_LOGIN_CLIENT_ID=your_naver_login_client_id
+NAVER_LOGIN_CLIENT_SECRET=your_naver_login_client_secret
+
+# 데이터베이스 설정
+DB_NAME=jembotdb
+DB_USER=jembot
+DB_PASSWORD=jembot
+DB_HOST=[MySQL_인스턴스_IP]  # 여기에 실제 MySQL IP 입력
+DB_PORT=3306
+```
+
+### 소셜 로그인 리다이렉트 URL 설정
+각 소셜 로그인 제공자 콘솔에서 리다이렉트 URL을 다음으로 설정:
+- **Google**: `http://[인스턴스_퍼블릭_IP]:80/accounts/google/login/callback/`
+- **Naver**: `http://[인스턴스_퍼블릭_IP]:80/accounts/naver/login/callback/`
+- **Kakao**: `http://[인스턴스_퍼블릭_IP]:80/accounts/kakao/login/callback/`
+
+### settings.py 수정
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'jembotdb',
+        'USER': 'jembot',
+        'PASSWORD': 'jembot',
+        'HOST': '[MySQL_인스턴스_IP]',  # 여기에 실제 MySQL IP 입력
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
+    }
+}
+```
+
+### FAISS 벡터 DB 추가
+- `app/utils2/faiss_index_bge_m3/` 폴더 다운로드 후 배치
+- `app/utils2/faiss_index3/` 폴더 다운로드 후 배치
+
+## 4. 실행 (빌드 + 실행 한 번에)
+```bash
+docker-compose up --build -d
+```
+
+## 5. 접속
+- **메인**: http://[인스턴스_퍼블릭_IP]:80
+
+## 6. 문제 해결
+```bash
+# 로그 확인
+docker-compose logs
+
+# 재시작 (빌드 포함)
+docker-compose down
+docker-compose up --build -d
+
+# 방화벽 확인 (80번 포트 열기)
+sudo ufw allow 80
+```
+```
+
+
 <hr>
 
 ## 4️⃣ 시스템 아키텍처
@@ -423,12 +583,14 @@ OpenAI GPT-4o (분석 리포트 생성)
 ### 추가 구현 사항
 #### 1. 채팅창 옆에 뉴스와 주식을 볼 수 있는 칸을 구현하여 기업에 관한 정보를 쉽게 얻을 수 있도록 구현
 <img src="images/chat_page.png" width="auto" alt="결과1"/><br>
+<img src="images/chat_page2.png" width="auto" alt="결과1-1"/><br>
 <img src="images/news.png" width="auto" alt="결과1"/><br>
 - 밑의 입력창에 기업명을 적으면 그 기업과 관련된 기사들이 뜨는 식으로 구현했습니다.
 - 주식 칸에서 기업명을 검색하면 그 기업의 주가 정보가 나오도록 구현했습니다.
 
 #### 2. 관심기업 및 종합보고서 기능 그리고 주식조회와 왼쪽의 댓글코멘트와 좋아요의 기능을 추가
 <img src="images/stock.png" width="auto" alt="결과3"/><br>
+<img src="images/stock2.png" width="auto" alt="결과3-1"/><br>
 - 해당 주식에 대한 여러 사람들의 생각을 볼 수 있게 댓글창을 구현하였으며 거기다 댓글에 좋아요를 눌러 서로 교류할 수 있도록 하였습니다.
 
 #### 3. 회원가입, 로그인, 마이페이지 기능 추가
