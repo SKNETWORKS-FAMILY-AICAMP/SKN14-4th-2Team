@@ -336,6 +336,9 @@ DATABASES = {
         },
     }
 }
+
+
+ALLLOWED_HOST = [AWS 인스턴스 IP주소, 혹은 허용할 특정 IP 주소]
 ```
 
 ### FAISS 벡터 DB 추가
