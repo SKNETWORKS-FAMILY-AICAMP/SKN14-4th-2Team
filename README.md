@@ -447,23 +447,30 @@ SelfQueryRetriever 시도 코드는 주석 처리되어 있으며, 현재는 일
 
 ---
 
-#### 6. `stock_price_tool.py`
-yfinance 라이브러리를 사용하여 get_stock_price 함수를 만듭니다. 이 함수는 주식 티커(예: '005930.KS')를 입력받아 현재가, 등락률, 거래량 등 실시간 시세 정보를 조회하여 반환합니다. @tool 데코레이터로 감싸 LangGraph가 호출할 수 있는 명확한 기능 단위로 정의하는 것이 핵심입니다.
+#### 6. `graph_node.py`
+메인 챗봇 시스템에 사용되는 langgraph의 각 노드를 생성한 함수 파일입니다.
 
 ---
 
-#### 7. `stock_news_retriever.py`
-네이버 뉴스 검색 API나 웹 크롤링을 통해 특정 기업 관련 최신 뉴스 기사들을 수집하는 search_news 함수를 구현합니다. 수집된 뉴스 텍스트들을 임베딩 모델(예: bge-m3)로 벡터화하고 FAISS 같은 벡터 DB에 저장하여, 사용자의 질문과 가장 관련 높은 뉴스 내용을 RAG(Retrieval-Augmented Generation) 방식으로 찾아내는 검색기(Retriever) 역할을 수행합니다.
+#### 7. `graph_setting.py'
+graph_node.py에서 생성한 각 노드들을 사용하여 langgraph를 생성하는 함수 파일입니다.
 
 ---
 
-#### 8. `agent_state.py` 
-TypedDict를 사용하여 에이전트의 작업 내용을 기록할 '상태'의 형식을 정의합니다. 사용자의 원본 질문(question)과 함께, 위 stock_price_tool의 결과가 담길 stock_price 필드, stock_news_retriever가 찾아온 뉴스가 담길 related_news 필드 등을 명시합니다. 이 상태는 모든 노드에 전달되는 중앙 데이터 버스입니다.
+#### 8. `main.py`
+graph_settings.py에서 생성한 langgraph를 가져와서, 실제 사용자 데이터를 받아서 langgraph의 State를 반환하는 함수 파일입니다.
 
 ---
 
-#### 9. `graph_router.py` 
-에이전트의 '상태'를 보고 다음 행동을 결정하는 '라우터(Router)' 함수를 작성합니다. 예를 들어, 상태에 related_news는 있지만 stock_price 정보가 없다면 '시세 조회 도구' 노드를 호출하라고 지시합니다. 모든 정보가 준비되면 '최종 답변 생성' 노드로 보내는 등, **조건부 엣지(conditional edge)**의 핵심 두뇌 역할을 담당합니다.
+#### 10. `stock_chain` 
+주식 분석 리포트를 제공해주는 페이지에서 사용하는 주식(기업) 분석 RAG 체인을 반환하는 함수 파일입니다.
+
+---
+
+#### 11. `stock_node`
+stock_chain에서 가져온 주식(기업) 분석 RAG 체인으로, 사용자의 입력(기업명)을 받고 해당 기업에 대한 사업보고서/재무제표를 RAG로 가져오고 리포트를 작성해주는 실제 실행 함수 파일입니다.
+
+
 
 # ♒ 흐름
 
