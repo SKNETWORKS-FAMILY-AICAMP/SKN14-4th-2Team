@@ -262,14 +262,12 @@ jembot_all_docker/
 - 클라우드 인스턴스에 Docker 설치
 - MySQL 인스턴스 or 도커 컨테이너 준비 (IP 주소 확인)
 
-## 2. Docker 설치 (인스턴스에서)
+## 2. Docker / docker-compose 설치 (인스턴스에서)
 ```bash
-# Ubuntu/Debian
+# Ubuntu
 sudo apt update
-sudo apt install docker.io docker-compose
-sudo systemctl start docker
-sudo systemctl enable docker
-sudo usermod -aG docker $USER
+sudo curl https://get.docker.com | bash
+sudo apt install docker-compose-plugin -y
 
 # CentOS/RHEL
 sudo yum install docker docker-compose
@@ -314,6 +312,10 @@ NAVER_LOGIN_CLIENT_SECRET=your_naver_login_client_secret
 - **Naver**: `http://[인스턴스_퍼블릭_IP]:80/accounts/naver/login/callback/`
 - **Kakao**: `http://[인스턴스_퍼블릭_IP]:80/accounts/kakao/login/callback/`
 
+- 각 소셜 로그인 제공자별로, ip주소만으로 접속을 허가하지 않을때는 인스턴스 퍼블릭 ip를 무료 도메인과 연결하여 사용 필요
+- 이 경우 settings.py에 연결한 도메인 주소도 같이 넣어야 하고, 소셜 로그인 리다이렉트 url 설정에서도 ip 대신 도메인 주소 기준으로 넣어야 함
+
+
 ### jembot_all_docker/_homeowork/settings.py 수정
 ```python
 DATABASES = {
@@ -331,7 +333,7 @@ DATABASES = {
 }
 
 
-ALLLOWED_HOSTS = [AWS 인스턴스 IP주소, 혹은 허용할 특정 IP 주소]
+ALLLOWED_HOSTS = [AWS 인스턴스 IP주소, 혹은 허용할 특정 IP 주소(연결 도메인 등)]
 ```
 
 ### FAISS 벡터 DB 추가
@@ -413,24 +415,11 @@ get_financial_state() 함수는 기업 코드, 연도, 보고서 코드, 연결 
 
 #### 2. `chain_setting.py`
 
-사용자가 선택한 기업명(selected_company)에 해당하는 고유 기업 코드(corp_code)를 CSV 파일에서 찾아냅니다.
-
-해당 기업의 공시 보고서 목록을 DART Open API로 요청하여 JSON 형태로 받아옵니다.
-
-받아온 보고서 리스트를 리스트 형태로 반환하며, 실패 시 빈 리스트를 반환합니다.
+메인 챗봇 langgraph에서 사용하는 각 chain을 설정하는 함수 파일입니다. (프롬프트 포함)
 
 ---
 
-#### 3. `graph_node.py`
-사용자의 질문을 분류(classify)하고 필요한 정보(회사, 연도 등)를 추출(extract_entities)합니다.
-
-질문 유형과 난이도에 따라 적절한 체인(accounting, financial, business, hybrid 등)을 선택하여 문서 검색 및 답변을 생성합니다. 
-
-대화 기록(chat_history)을 유지하며 각 단계에서 사용자와 assistant의 역할에 따라 상태를 업데이트합니다.
-
----
-
-#### 4. `normalize_code_search.py`
+#### 3. `normalize_code_search.py`
 normalize_company_name()은 입력된 기업명을 정규화하여 corp_list에서 가장 유사한 공식 기업명으로 매칭합니다.
 
 parse_extracted_text()는 텍스트에서 회사명과 연도 정보를 추출하여 딕셔너리 형태로 반환합니다.
@@ -439,36 +428,34 @@ find_corporation_code()는 정규화된 기업명을 기반으로 corp_list.json
 
 ---
 
-#### 5. `retriever_setting.py`
+#### 4. `retriever_setting.py`
 HuggingFace의 BAAI/bge-m3 임베딩 모델을 사용하여 로컬에 저장된 두 개의 FAISS 인덱스(faiss_index3, faiss_index_bge_m3)를 로드합니다.
 
 각각의 인덱스에서 top-6 유사 문서를 검색할 수 있는 accounting_retriever와 business_retriever를 생성합니다.
 
-SelfQueryRetriever 시도 코드는 주석 처리되어 있으며, 현재는 일반 retriever만 반환합니다
-
 ---
 
-#### 6. `graph_node.py`
+#### 5. `graph_node.py`
 메인 챗봇 시스템에 사용되는 langgraph의 각 노드를 생성한 함수 파일입니다.
 
 ---
 
-#### 7. `graph_setting.py'
+#### 6. `graph_setting.py'
 graph_node.py에서 생성한 각 노드들을 사용하여 langgraph를 생성하는 함수 파일입니다.
 
 ---
 
-#### 8. `main.py`
+#### 7. `main.py`
 graph_settings.py에서 생성한 langgraph를 가져와서, 실제 사용자 데이터를 받아서 langgraph의 State를 반환하는 함수 파일입니다.
 
 ---
 
-#### 10. `stock_chain` 
+#### 8. `stock_chain` 
 주식 분석 리포트를 제공해주는 페이지에서 사용하는 주식(기업) 분석 RAG 체인을 반환하는 함수 파일입니다.
 
 ---
 
-#### 11. `stock_node`
+#### 9. `stock_node`
 stock_chain에서 가져온 주식(기업) 분석 RAG 체인으로, 사용자의 입력(기업명)을 받고 해당 기업에 대한 사업보고서/재무제표를 RAG로 가져오고 리포트를 작성해주는 실제 실행 함수 파일입니다.
 
 
