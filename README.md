@@ -313,7 +313,7 @@ NAVER_LOGIN_CLIENT_SECRET=your_naver_login_client_secret
 - **Kakao**: `http://[인스턴스_퍼블릭_IP]:80/accounts/kakao/login/callback/`
 
 - 각 소셜 로그인 제공자별로, ip주소만으로 접속을 허가하지 않을때는 인스턴스 퍼블릭 ip를 무료 도메인과 연결하여 사용 필요
-- 이 경우 settings.py에 연결한 도메인 주소도 같이 넣어야 하고, 소셜 로그인 리다이렉트 url 설정에서도 ip 대신 도메인 주소 기준으로 넣어야 함
+- 이 경우 settings.py의 ALLOWED_HOSTS에 연결한 도메인 주소도 같이 넣어야 하고, 소셜 로그인 리다이렉트 url 설정에서도 ip 대신 도메인 주소 기준으로 넣어야 함
 
 
 ### jembot_all_docker/_homeowork/settings.py 수정
